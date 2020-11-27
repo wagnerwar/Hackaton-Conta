@@ -1,0 +1,86 @@
+body {
+    font-family: sans-serif;
+    background-color: #f8faff;
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    margin-top: 35px;
+    margin-bottom: 20px;
+    font-size: 62px;
+    color: #20355a;
+    max-width: 500px;
+    align-self: center;
+}
+
+.description {
+    margin-bottom: 70px;
+    color: #8687a8;
+    font-size: 18px;
+    line-height: 1.5;
+    font-weight: 400;
+    text-align: center;
+    max-width: 500px;
+    align-self: center;
+}
+
+.form-base-wrap {
+    margin-bottom: 40px;
+    padding: 40px;
+    border-radius: 20px;
+    background-color: #fff;
+    max-width: 550px;
+    box-shadow: 11px 11px 55px 0 rgba(114,119,142,.15);
+}
+
+.input-wrap {
+    display: flex;
+    flex-direction: column;
+    min-height: 80px;
+    margin-bottom: 20px;
+}
+
+.label-title {
+    margin-bottom: 10px;
+    color: #18283e;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+}
+
+    .input:focus {
+        border-color: #3898EC;
+        outline: 0;
+    }
+
+.text-field, .select-field {
+    min-height: 60px;
+    margin-bottom: 4px;
+    border-radius: 5px;
+    background-color: #fafbfc;
+    color: #9b9eb8;
+    font-size: 16px;
+}
+
+    .text-field:focus {
+        border-color: #5d3eff;
+        color: #18283e;
+    }
+
+    .text-field:active {
+        color: #18283e;
+    }
+
+.textarea-field {
+    min-height: 140px;
+}
