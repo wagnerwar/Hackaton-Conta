@@ -21,4 +21,6 @@ Tendo estas credenciais, em cada chamada, deve-se incluir estas chaves na instâ
 		1 - TextAnalityc
 		2 - SpeechToText
 
-P# ower BI Desktop (Versão: 2.87.923.0 64-bit (novembro de 2020))
+# Power BI Desktop (Versão: 2.87.923.0 64-bit (novembro de 2020))
+
+OBS: Para abrir o arquivo com extensão .pbix, é necessário que o Power BI Desktop esteja instalado.
