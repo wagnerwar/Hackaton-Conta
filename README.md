@@ -13,13 +13,12 @@ Esta aplicação consome alguns serviços cognitivos da Azure (TextAnalytic e Sp
 Tendo estas credenciais, em cada chamada, deve-se incluir estas chaves na instância de um dos serviços do Azure.
 
 ## Tecnologias utilizadas
-ASp.net core mvc com versão 3.0.1
-		Cosmos DB
-		Jquery e Bootstrap
-		Serviços do Azure
-  Power BI Desktop (Versão: 2.87.923.0 64-bit (novembro de 2020)) 
-			Serviços cognitivos da Azure
-				1 - TextAnalityc
-				2 - SpeechToText
+# ASp.net core mvc com versão 3.0.1
+# Cosmos DB
+# Jquery e Bootstrap
+# Serviços do Azure
+	Serviços cognitivos da Azure
+		1 - TextAnalityc
+		2 - SpeechToText
 
-
+P# ower BI Desktop (Versão: 2.87.923.0 64-bit (novembro de 2020))
