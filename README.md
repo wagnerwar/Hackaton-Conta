@@ -12,4 +12,14 @@ Feito isso, é só baixar o projeto, compilar (Clique direito sobre o projeto ->
 Esta aplicação consome alguns serviços cognitivos da Azure (TextAnalytic e Speech). Portanto, para usá-los é necessário configurar as credenciais de autenticação na Azure para usá-las na aplicação. 
 Tendo estas credenciais, em cada chamada, deve-se incluir estas chaves na instância de um dos serviços do Azure.
 
+## Tecnologias utilizadas
+ASp.net core mvc com versão 3.0.1
+		Cosmos DB
+		Jquery e Bootstrap
+		Serviços do Azure
+  Power BI Desktop (Versão: 2.87.923.0 64-bit (novembro de 2020)) 
+			Serviços cognitivos da Azure
+				1 - TextAnalityc
+				2 - SpeechToText
+
 
