@@ -8,8 +8,7 @@ namespace AzureWeb.Models
 {
     public enum EnumRegiao
     {
-        //Aricanduva / Vila Formosa
-        [Description("Aricanduva / Vila Formosa")]
+        //Aricanduva / Vila Formosa        
         [Display(Name ="Aricanduva / Vila Formosa")]
         Aricanduva_Vila_Formosa,
 

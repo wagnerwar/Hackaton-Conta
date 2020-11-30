@@ -30,29 +30,20 @@ namespace AzureWeb.CognitiveServices
             this.key2 = key2;
         }
 
-        public async Task RunSpeechToTextAsync(CidadaoModel cidadao,IFormFile arquivo)
+        public async Task<string> RunSpeechToTextAsync(string path)        
         {
-            var config = SpeechConfig.FromSubscription(key1, region);
-            var caminhoArquivo = Path.GetTempFileName();
-
-            var reader = new BinaryReader(File.OpenRead(caminhoArquivo));
-            using var audioInputStream = AudioInputStream.CreatePushStream();
-            using var audioConfig = AudioConfig.FromStreamInput(audioInputStream);
-
-            byte[] readBytes;
-            do
+            string completePath = path + "\\file.wav";
+            if (File.Exists(completePath))
             {
-                readBytes = reader.ReadBytes(1024);
-                audioInputStream.Write(readBytes, readBytes.Length);
-            } while (readBytes.Length > 0);
-
-
-            using (var recognizer = new SpeechRecognizer(config, audioConfig))
-            {
-                var result = recognizer.RecognizeOnceAsync();
-
-            }
-
+                var speechConfig = SpeechConfig.FromSubscription(endpoint, key1);
+                //string path = @"c:\temp\file.wav";
+                using var audioConfig = AudioConfig.FromWavFileInput(completePath);                
+                using var recognizer = new SpeechRecognizer(speechConfig, "pt-BR", audioConfig);
+                var result = await recognizer.RecognizeOnceAsync();                               
+              
+                return result.Text;
+            }           
+            return "";
         }
     }
 }

@@ -12,9 +12,17 @@ namespace AzureWeb.Models
 {
     public class CidadaoModel
     {
+
+        public CidadaoModel() {
+
+            radioTipDeDados = new[] { "Texto", "Audio" };
+        }
+    
+
         [JsonProperty(PropertyName = "id")]
         public string id { get; set; }
 
+        [Required(ErrorMessage = "Digite o CEP")]
         [JsonProperty(PropertyName = "cep")]
         public string cep { get; set; }
         
@@ -33,12 +41,18 @@ namespace AzureWeb.Models
 
         [JsonProperty(PropertyName = "sentimento")]
         public string sentimento { get; set; }
+
+        [JsonProperty(PropertyName = "tipoEntrada")]
+        public string tipoEntrada { get; set; }
+
         public EnumRegiao regioes { get; set; }
         public EnumServicoReclamacao servicos { get; set; }
         public IFormFile arquivo { set; get; }
-        
 
-    }
+        public string[] radioTipDeDados { set; get; }
+
+
+}
 
     public static class RegiaoMetodos
     {

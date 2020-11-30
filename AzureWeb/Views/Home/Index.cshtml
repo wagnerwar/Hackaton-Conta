@@ -15,96 +15,219 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            <label for="" class="control-label col-md-2">Nome</label>
-            <div class="col-md-7">
-                @Html.EditorFor(model => model.nome, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.nome, "", new { @class = "text-danger" })
-            </div>
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <label for="" class="control-label col-md-2">Nome</label>
+        <div class="col-md-7">
+            @Html.EditorFor(model => model.nome, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.nome, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            <label for="" class="control-label col-md-2">CEP</label>
-            <div class="col-md-7">
-                @Html.EditorFor(model => model.cep, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.cep, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        <label for="" class="control-label col-md-2">CEP</label>
+        <div class="col-md-7">
+            @Html.EditorFor(model => model.cep, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.cep, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            <label for="" class="control-label col-md-2">Texto</label>
-            <div class="col-md-7">
-                @Html.EditorFor(model => model.texto, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.cep, "", new { @class = "text-danger" })
-            </div>
+
+    <div class="form-group">
+        <label for="" class="control-label col-md-2">Distritos</label>
+        <div class="col-md-7">
+            @Html.DropDownListFor(m => m.regioes,
+ new SelectList(Enum.GetNames(typeof(EnumRegiao))),
+ "Selecione o distrito",
+ new { @class = "form-control" })
+
+
+            @Html.ValidationMessageFor(model => model.regioes, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            <label for="" class="control-label col-md-2">Distritos</label>
-            <div class="col-md-7">
-                @Html.DropDownListFor(m => m.regioes,
-     new SelectList(Enum.GetNames(typeof(EnumRegiao))),
-     "Selecione o distrito",
-     new { @class = "form-control" })
+    <div class="form-group">
+        <label for="" class="control-label col-md-3">Serviços de reclamação</label>
+        <div class="col-md-7">
+            @Html.DropDownListFor(m => m.servico,
+ new SelectList(Enum.GetValues(typeof(EnumServicoReclamacao))),
+ "Selecione tipo de reclamação",
+ new { @class = "form-control" })
 
 
-                @Html.ValidationMessageFor(model => model.regioes, "", new { @class = "text-danger" })
-            </div>
+            @Html.ValidationMessageFor(model => model.regioes, "", new { @class = "text-danger" })
         </div>
-
-        <div class="form-group">
-            <label for="" class="control-label col-md-3">Serviços de reclamação</label>
-            <div class="col-md-7">
-                @Html.DropDownListFor(m => m.regioes,
-     new SelectList(Enum.GetValues(typeof(EnumServicoReclamacao))),
-     "Selecione tipo de reclamação",
-     new { @class = "form-control" })
+    </div>
+    <br />
 
 
-                @Html.ValidationMessageFor(model => model.regioes, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        <div class="col-md-7">
+            <label class="form-controll">Escolha qual tipo de dado deseja analisar</label>
+            <br />
+            @foreach (var item in Model.radioTipDeDados)
+            {
+                <input type="radio"  asp-for="tipoEntrada" value="@item" /> @item<br />
+            }
         </div>
-        <br />
+    </div>
 
-       
-           
-        @*<div class="form-group">
+    <div class="form-group" id="entradaTxt">
+        <label for="" class="control-label col-md-2">Texto</label>
+        <div class="col-md-7">
+            @Html.EditorFor(model => model.texto, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.cep, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    
+    <div class="form-group" id="entradaAudio">
 
-            <div class="col-md-7">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-                    </div>
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="inputGroupFile01"
-                               aria-describedby="inputGroupFileAddon01" asp-for="arquivo">
-                        <label class="custom-file-label" for="inputGroupFile01">Escolha o arquivo</label>
-                    </div>
+        <div class="col-md-7">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="btn btn-primary" id="btnEnviar">Clique aqui para enviar o arquivo</span>
+                </div>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="inputGroupFile01"
+                           aria-describedby="inputGroupFileAddon01">
+                    <label class="custom-file-label" for="inputGroupFile01">Escolha o arquivo</label>
                 </div>
             </div>
-        </div>*@
-
-
-        <br />
-
-        <div class="form-group">
-
-            @{  var msg = TempData["mensagem"] != null ? TempData["mensagem"] : ""; }
-            <strong>@msg</strong>
         </div>
-        <div class="form-group">
-            <div class="col-md-7">
-                <button type="submit" class="btn btn-success">Enviar</button>
-            </div>
-        </div>
+        @*<div class="col-md-3">
+                <button type="button" class="btn btn-success" id="btnEnviar">Enviar Arquivo</button>
+            </div>*@
+    </div>
 
+    <br />
+
+    <div class="form-group">
+
+        @{ var msg = TempData["mensagem"] != null ? TempData["mensagem"] : ""; }
+        <strong>@msg</strong>
+    </div>
+    <div class="form-group">
+        <div class="col-md-7">
+            <button type="submit" class="btn btn-success">Enviar</button>
+            <a class="btn btn-dark" target="_blank" href="https://app.powerbi.com/view?r=eyJrIjoiNGM2NTlkOTItYzRmNS00Y2FjLWIwMDEtMWRlOWVhZDllZTViIiwidCI6ImYzOThkZjljLWZkMGMtNDgyOS1hMDAzLWM3NzBhMWM0YTA2MyJ9&embedImagePlaceholder=true">
+                Visualizar análise de dados
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-bar-chart-line-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2z"></path>
+                </svg>
+            </a>
+
+        </div>
         
     </div>
-    <script>
+    <input type="hidden" id="urlUpload" value="@Url.Action("Upload", "Home")" />
 
+
+
+</div>
+    <script>
+        // Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+// for details on configuring this project to bundle and minify static web assets.
+
+// Write your JavaScript code.
+$(document).ready(function () {
+    var files;
+    var form = document.getElementById('form-index');
+    var str64;
+    $("#entradaTxt").hide();
+    $("#entradaAudio").hide();
+    
+
+  
+    $(document).on('click', 'input[name="tipoEntrada"]', function (e) {
+        var radioValue = $("input[name='tipoEntrada']:checked").val();
+        if (radioValue === "Texto") {
+            $("#entradaAudio").hide();
+            $("#entradaTxt").show();            
+        }
+        if (radioValue === "Audio") {
+            $("#entradaTxt").hide();
+            $("#entradaAudio").show();
+        }
+    });
+
+       
+    // Add events
+    $('#inputGroupFile01').change(function(){
+        files = $('#inputGroupFile01').get(0).files;
+        if (files[0]) {
+            //var label = $(".custom-file").children().find('label');
+            var label = $("label[for='" + $(this).attr("id") + "']");
+            $(label).html(files[0].name);
+        }
+        
+    });
+
+    // Grab the files and set them to our variable
+
+    function getBase64(file) {
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function () {
+            str64 = reader.result;
+            console.log(reader.result);
+        };
+        reader.onerror = function (error) {
+            console.log('Error: ', error);
+        };
+    }
+    
+
+    $("#btnEnviar").click(function () {
+        var urlUpload = $("#urlUpload").val();
+        var data = new FormData();
+        data.set("file", files[0]);
+        $.ajax({
+            type: "POST",
+            url: urlUpload,            
+            contentType: false,
+            processData: false,
+            method: 'POST',
+            cache: false,
+            data: data,
+            success: function (data) {
+                var teste = data;
+                alert(data);
+                debugger;
+            },
+
+        });
+
+         
+
+        return false;
+    });
+
+  
+
+    // Catch the form submit and upload the files
+    function uploadFiles(event) {
+        event.stopPropagation(); // Stop stuff happening
+        event.preventDefault(); // Totally stop stuff happening           
+
+        // Create a formdata object and add the files
+        var data = new FormData();
+        if (files.lenght > 0) {
+            data.append('UploadedFiles', files[0], file[0].name);
+        }
+
+        //setup request
+        var xhr = new XMLHttpRequest();
+        //open connection
+        xhr.open('POST', '/Home/EnvioDados', false);
+        xhr.setRequestHeader("Content-Type", files.type);
+        //send request
+        xhr.send(data);
+
+    }
+
+});
     </script>
 }
 
